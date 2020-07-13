@@ -29,6 +29,20 @@ public class UserService {
 		return repository.save(obj);
 	}
 	
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
 	
-	
+	public User update(Long id, User obj) {
+		User entity = repository.getOne(id);  //instancia sem ir ao Banco de Dados. só prepara o objeto. é mais eficiente
+		updateData(entity, obj);
+		return repository.save(entity);
+	}
+
+	private void updateData(User entity, User obj) {
+		entity.setEmail(obj.getEmail());
+		entity.setName(obj.getName());
+		entity.setPhone(obj.getPhone());
+		
+	}
 }
