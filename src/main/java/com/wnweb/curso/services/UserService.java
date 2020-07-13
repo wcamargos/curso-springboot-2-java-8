@@ -22,7 +22,7 @@ public class UserService {
 	
 	public User findbyId(Long id){
 		Optional<User> obj = repository.findById(id);
-		return obj.get(); 
+		return obj.get();   //deve fazer o tratamento de exceções (quando o id não existe) etc
  	}
 	
 	public User insert(User obj) {
@@ -30,7 +30,7 @@ public class UserService {
 	}
 	
 	public void delete(Long id) {
-		repository.deleteById(id);
+		repository.deleteById(id);   //deve ser incluída a classe de exceção para delete em usuário que não existe (DataBase Exception)
 	}
 	
 	public User update(Long id, User obj) {
@@ -42,7 +42,7 @@ public class UserService {
 	private void updateData(User entity, User obj) {
 		entity.setEmail(obj.getEmail());
 		entity.setName(obj.getName());
-		entity.setPhone(obj.getPhone());
+		entity.setPhone(obj.getPhone());  //deve ser incluída exceção específica - EntityNotFoundException
 		
 	}
 }
